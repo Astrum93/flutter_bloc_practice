@@ -6,6 +6,4 @@ class CounterCubit extends Cubit<dynamic> {
   void increment() => emit(state + 1);
 
   void decrement() => emit(state - 1);
-
-  void multiply() => emit(state * 2);
 }
