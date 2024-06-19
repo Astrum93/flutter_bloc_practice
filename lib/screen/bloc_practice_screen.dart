@@ -1,5 +1,7 @@
 import 'package:bloc_practice/common/widget/button/green_button.dart';
+import 'package:bloc_practice/common/widget/width_height_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BlocPracticeScreen extends StatelessWidget {
   const BlocPracticeScreen({super.key});
@@ -19,7 +21,16 @@ class BlocPracticeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GreenButton(
-                onTap: () {},
+                onTap: () {
+                  context.go('/counter');
+                },
+                text: 'Counter',
+              ),
+              height20,
+              GreenButton(
+                onTap: () {
+                  context.go('/counter');
+                },
                 text: 'Counter',
               ),
             ],

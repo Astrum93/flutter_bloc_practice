@@ -1,6 +1,8 @@
+import 'package:bloc_practice/bloc/counter_cubit.dart';
 import 'package:bloc_practice/screen/bloc_practice_screen.dart';
 import 'package:bloc_practice/screen/counter/counter_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class BlocPracticeApp extends StatelessWidget {
@@ -26,7 +28,10 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: 'counter',
           builder: (context, state) {
-            return const CounterScreen();
+            return BlocProvider(
+              create: (_) => CounterCubit(),
+              child: const CounterScreen(),
+            );
           },
         )
       ],
