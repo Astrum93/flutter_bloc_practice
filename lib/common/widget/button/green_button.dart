@@ -12,7 +12,7 @@ class GreenButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         width: 200,
         height: 50,
@@ -24,8 +24,8 @@ class GreenButton extends StatelessWidget {
           ],
         ),
         alignment: Alignment.center,
-        child: const Text(
-          'Counter',
+        child: Text(
+          text,
         ),
       ),
     );
