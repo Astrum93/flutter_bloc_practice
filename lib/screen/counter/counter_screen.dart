@@ -26,16 +26,19 @@ class CounterScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            heroTag: 'increment',
             child: const Icon(Icons.add),
             onPressed: () => context.read<CounterCubit>().increment(),
           ),
           height10,
           FloatingActionButton(
+            heroTag: 'decrement',
             child: const Icon(Icons.remove),
             onPressed: () => context.read<CounterCubit>().decrement(),
           ),
           height10,
           FloatingActionButton(
+            heroTag: 'multiply',
             child: const Icon(Icons.close),
             onPressed: () => context.read<CounterCubit>().multiply(),
           ),

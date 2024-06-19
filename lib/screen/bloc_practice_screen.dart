@@ -27,10 +27,7 @@ class BlocPracticeScreen extends StatelessWidget {
                 text: 'Counter',
               ),
               height20,
-              GreenButton(
-                onTap: () {
-                  context.go('/counter');
-                },
+              const GreenButton(
                 text: 'Counter',
               ),
             ],
