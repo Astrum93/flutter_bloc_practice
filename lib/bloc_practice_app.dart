@@ -1,4 +1,5 @@
 import 'package:bloc_practice/bloc/cubit/counter_cubit.dart';
+import 'package:bloc_practice/screen/api/api_screen.dart';
 import 'package:bloc_practice/screen/bloc_practice_screen.dart';
 import 'package:bloc_practice/screen/counter/counter_screen.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,12 @@ final GoRouter _router = GoRouter(
               create: (_) => CounterCubit(),
               child: const CounterScreen(),
             );
+          },
+        ),
+        GoRoute(
+          path: 'api',
+          builder: (context, state) {
+            return const ApiScreen();
           },
         )
       ],
