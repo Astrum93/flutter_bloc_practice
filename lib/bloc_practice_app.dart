@@ -1,4 +1,4 @@
-import 'package:bloc_practice/bloc/cubit/counter_cubit.dart';
+import 'package:bloc_practice/bloc/counter_cubit/counter_cubit.dart';
 import 'package:bloc_practice/screen/api/api_screen.dart';
 import 'package:bloc_practice/screen/bloc_practice_screen.dart';
 import 'package:bloc_practice/screen/counter/counter_screen.dart';
