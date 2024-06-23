@@ -25,4 +25,37 @@ abstract mixin class SpotifyWebApiService {
       throw Exception('Failed to get access token');
     }
   }
+
+  Future searchMusic(String query) async {
+    final token = await getAccessToken();
+    final response = await http.get(
+      Uri.parse('https://api.spotify.com/v1/search?q=$query&type=track'),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      List searchResult = [];
+
+      for (var item in json['tracks']['items']) {
+        final String trackImage = item['album']['images'][0]['url'];
+        final String trackName = item['name'];
+        final String artistsName = item['artists'][0]['name'];
+
+        Map<dynamic, dynamic> trackInfo = {
+          'trackImage': trackImage,
+          'trackName': trackName,
+          'artistsName': artistsName,
+        };
+
+        searchResult.add(trackInfo);
+      }
+
+      return searchResult;
+    } else {
+      throw Exception('Failed to search tracks');
+    }
+  }
 }
