@@ -1,23 +1,16 @@
-class SpotifyTrackModel {
-  final String trackName, trackImage, artistsName;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  SpotifyTrackModel({
-    required this.trackName,
-    required this.trackImage,
-    required this.artistsName,
-  });
+part 'spotify_web_api_service.freezed.dart';
+part 'spotify_web_api_service.g.dart';
 
-  factory SpotifyTrackModel.fromJson(Map<String, dynamic> json) {
-    return SpotifyTrackModel(
-      trackName: json['trackName'],
-      trackImage: json['trackImage'],
-      artistsName: json['artistsName'],
-    );
-  }
-}
+@freezed
+class SpotifyTrackModel with _$SpotifyTrackModel {
+  factory SpotifyTrackModel({
+    required String trackName,
+    required String trackImage,
+    required String artistsName,
+  }) = _SpotifyTrackModel;
 
-enum SpotifySearchTrackState {
-  loading,
-  done,
-  error,
+  factory SpotifyTrackModel.fromJson(Map<String, dynamic> json) =>
+      _$SpotifyTrackModel(json);
 }
