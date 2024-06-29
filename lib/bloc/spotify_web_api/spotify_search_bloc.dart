@@ -11,9 +11,10 @@ class SpotifySearchBloc extends Bloc<SpotifySearchEvent, SpotifySearchState> {
     required this.repository,
   }) : super(Empty());
 
-  Stream<SpotifySearchState> mapEventToState(SpotifySearchEvent event) async* {
+  Stream<SpotifySearchState> mapEventToState(
+      SpotifySearchEvent event, String query) async* {
     if (event is SearchMusicEvent) {
-      yield* _mapSearchMusicEvent(event);
+      yield* _mapSearchMusicEvent(event, query);
     }
   }
 
