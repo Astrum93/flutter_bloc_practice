@@ -1,4 +1,6 @@
 import 'package:bloc_practice/bloc/counter_cubit/counter_cubit.dart';
+import 'package:bloc_practice/bloc/spotify_web_api/spotify_repository.dart';
+import 'package:bloc_practice/bloc/spotify_web_api/spotify_search_bloc.dart';
 import 'package:bloc_practice/screen/api/api_screen.dart';
 import 'package:bloc_practice/screen/bloc_practice_screen.dart';
 import 'package:bloc_practice/screen/counter/counter_screen.dart';
@@ -38,7 +40,10 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: 'api',
           builder: (context, state) {
-            return const ApiScreen();
+            return BlocProvider(
+                create: (_) =>
+                    SpotifySearchBloc(repository: SpotifyRepository()),
+                child: const ApiScreen());
           },
         )
       ],
