@@ -48,10 +48,26 @@ class _ApiScreenState extends State<ApiScreen> {
 
                   /// 로딩 중인 경우
                 } else if (state is Loading) {
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
 
                   /// 완료 된 경우
-                } else if (state is Loaded) {}
+                } else if (state is Loaded) {
+                  final items = state.spotifyTracks;
+
+                  return ListView.separated(
+                      itemBuilder: (_, index) {
+                        final track = items[index];
+                        return Row(
+                          children: [
+                            Expanded(
+                              child: Text(track.trackName),
+                            ),
+                          ],
+                        );
+                      },
+                      separatorBuilder: (_, index) => const Divider(),
+                      itemCount: items.length);
+                }
 
                 /// 그 외 모든 상황
                 return Container(
