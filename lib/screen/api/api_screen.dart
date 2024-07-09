@@ -1,4 +1,5 @@
 import 'package:bloc_practice/bloc/spotify_web_api/spotify_search_bloc.dart';
+import 'package:bloc_practice/bloc/spotify_web_api/spotify_search_event.dart';
 import 'package:bloc_practice/bloc/spotify_web_api/spotify_search_state.dart';
 import 'package:bloc_practice/common/widget/width_height_widget.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,9 @@ class _ApiScreenState extends State<ApiScreen> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          context.read<SpotifySearchBloc>().add(SearchMusicEvent(query: query));
+        },
         child: const Icon(Icons.search),
       ),
       body: Padding(
