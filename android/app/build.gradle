@@ -51,7 +51,7 @@ android {
         manifestPlaceholders = [
                 redirectHostName: "example.com",
                 redirectSchemeName: "https",
-                applicationName: "com.example.bloc_practice.MyApplication"
+                applicationName: "android.app.Application"
         ]
     }
 
