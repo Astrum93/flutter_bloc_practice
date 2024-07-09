@@ -49,7 +49,7 @@ android {
         versionName flutterVersionName
         multiDexEnabled true
         manifestPlaceholders = [
-                redirectHostName: "example.com",
+                redirectHostName: "com.example.bloc_practice",
                 redirectSchemeName: "https",
                 applicationName: "android.app.Application"
         ]
