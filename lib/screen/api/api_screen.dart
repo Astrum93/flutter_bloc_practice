@@ -39,15 +39,17 @@ class _ApiScreenState extends State<ApiScreen> {
             ),
             height20,
             BlocBuilder<SpotifySearchBloc, SpotifySearchState>(
-              builder: (_, state) {
+              builder: (context, state) {
                 /// 비어있는 경우
                 if (state is Empty) {
                   return Container(
+                      width: 100,
+                      height: 100,
                       decoration: const BoxDecoration(color: Colors.black));
 
                   /// 에러가 난 경우
                 } else if (state is Error) {
-                  return Text(state.message);
+                  return Center(child: Text(state.message));
 
                   /// 로딩 중인 경우
                 } else if (state is Loading) {
@@ -57,19 +59,21 @@ class _ApiScreenState extends State<ApiScreen> {
                 } else if (state is Loaded) {
                   final items = state.spotifyTracks;
 
-                  return ListView.separated(
-                      itemBuilder: (_, index) {
-                        final track = items[index];
-                        return Row(
-                          children: [
-                            Expanded(
-                              child: Text(track.trackName),
-                            ),
-                          ],
-                        );
-                      },
-                      separatorBuilder: (_, index) => const Divider(),
-                      itemCount: items.length);
+                  return Expanded(
+                    child: ListView.separated(
+                        itemBuilder: (_, index) {
+                          final track = items[index];
+                          return Row(
+                            children: [
+                              Expanded(
+                                child: Text(track.toString()),
+                              ),
+                            ],
+                          );
+                        },
+                        separatorBuilder: (_, index) => const Divider(),
+                        itemCount: items.length),
+                  );
                 }
 
                 /// 그 외 모든 상황
