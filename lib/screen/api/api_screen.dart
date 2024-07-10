@@ -60,19 +60,42 @@ class _ApiScreenState extends State<ApiScreen> {
                   final items = state.spotifyTracks;
 
                   return Expanded(
-                    child: ListView.separated(
-                        itemBuilder: (_, index) {
-                          final track = items[index];
-                          return Row(
-                            children: [
-                              Expanded(
-                                child: Text(track.toString()),
-                              ),
-                            ],
-                          );
-                        },
-                        separatorBuilder: (_, index) => const Divider(),
-                        itemCount: items.length),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.separated(
+                          itemBuilder: (_, index) {
+                            final track = items[index];
+                            return Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 30,
+                                  child: Image.network(track['trackImage']),
+                                ),
+                                const Width(30),
+                                Expanded(
+                                    child: Text(
+                                  track['trackName'],
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
+                                width30,
+                                Expanded(
+                                  child: Text(
+                                    track['artistsName'],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                          separatorBuilder: (_, index) => const Divider(),
+                          itemCount: items.length),
+                    ),
                   );
                 }
 
