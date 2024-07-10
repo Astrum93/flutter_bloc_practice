@@ -8,15 +8,19 @@ class SpotifySearchBloc extends Bloc<SpotifySearchEvent, SpotifySearchState> {
 
   SpotifySearchBloc({
     required this.spotifyWebApi,
-  }) : super(Empty());
+  }) : super(Empty()) {
+    on<SearchMusicEvent>((event, emit) async {
+      await _trackSearch(event, emit);
+    });
+  }
 
   /// query 를 통한 음악 검색
-  Future<void> _trackSearch(SpotifySearchEvent event,
-      Emitter<SpotifySearchState> emit, String query) async {
+  Future<void> _trackSearch(
+      SearchMusicEvent event, Emitter<SpotifySearchState> emit) async {
     emit(Loading());
     try {
       await spotifyWebApi.getAccessToken();
-      List spotifyTracks = await spotifyWebApi.searchMusic(query);
+      List spotifyTracks = await spotifyWebApi.searchMusic(event.query);
 
       emit(Loaded(spotifyTracks: spotifyTracks));
     } catch (e) {
