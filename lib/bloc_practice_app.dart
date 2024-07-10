@@ -41,7 +41,8 @@ final GoRouter _router = GoRouter(
           path: 'api',
           builder: (context, state) {
             return BlocProvider(
-                create: (_) => SpotifySearchBloc(repository: SpotifyWebApi()),
+                create: (_) =>
+                    SpotifySearchBloc(spotifyWebApi: SpotifyWebApi()),
                 child: const ApiScreen());
           },
         )

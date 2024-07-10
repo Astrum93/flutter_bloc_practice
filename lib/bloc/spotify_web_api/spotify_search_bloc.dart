@@ -1,37 +1,28 @@
 import 'package:bloc_practice/bloc/spotify_web_api/spotify_search_event.dart';
 import 'package:bloc_practice/bloc/spotify_web_api/spotify_search_state.dart';
 import 'package:bloc_practice/bloc/spotify_web_api/spotify_web_api.dart';
-import 'package:bloc_practice/spotify/spotify_track.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SpotifySearchBloc extends Bloc<SpotifySearchEvent, SpotifySearchState> {
-  final SpotifyWebApi repository;
+  final SpotifyWebApi spotifyWebApi;
 
   SpotifySearchBloc({
-    required this.repository,
+    required this.spotifyWebApi,
   }) : super(Empty());
 
-  Stream<SpotifySearchState> mapEventToState(
-      SpotifySearchEvent event, String query) async* {
-    if (event is SearchMusicEvent) {
-      yield* _mapSearchMusicEvent(event, query);
-    }
-  }
-
-  Stream<SpotifySearchState> _mapSearchMusicEvent(
-      SearchMusicEvent event, String query) async* {
+  /// query 를 통한 음악 검색
+  Future<void> _trackSearch(SpotifySearchEvent event,
+      Emitter<SpotifySearchState> emit, String query) async {
+    emit(Loading());
     try {
-      /// loading 상태
-      yield Loading();
+      await spotifyWebApi.getAccessToken();
+      List spotifyTracks = await spotifyWebApi.searchMusic(query);
 
-      /// repository에서 track 받아오는 상태
-      final repo = await repository.searchMusic(query);
-      final result = repo.map((e) => SpotifyTrack.fromJson(e)).toList();
-
-      /// loaded 상태
-      yield Loaded(spotifyTracks: result);
+      emit(Loaded(spotifyTracks: spotifyTracks));
     } catch (e) {
-      yield Error(message: e.toString());
+      emit(
+        Error(message: e.toString()),
+      );
     }
   }
 }
