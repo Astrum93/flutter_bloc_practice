@@ -1,4 +1,3 @@
-import 'package:bloc_practice/spotify/spotify_track.dart';
 import 'package:equatable/equatable.dart';
 
 /// Bloc의 상태
@@ -28,7 +27,7 @@ class Error extends SpotifySearchState {
 }
 
 class Loaded extends SpotifySearchState {
-  final List<SpotifyTrack> spotifyTracks;
+  final List spotifyTracks;
 
   Loaded({required this.spotifyTracks});
 
