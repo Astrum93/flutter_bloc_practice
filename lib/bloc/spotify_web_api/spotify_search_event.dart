@@ -1,11 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-abstract class SpotifySearchEvent extends Equatable {}
+sealed class SpotifySearchEvent extends Equatable {
+  const SpotifySearchEvent();
+}
 
-class SearchMusicEvent extends SpotifySearchEvent {
+final class SearchMusicEvent extends SpotifySearchEvent {
   final String query;
 
-  SearchMusicEvent({required this.query});
+  const SearchMusicEvent({required this.query});
 
   @override
   // TODO: implement props
