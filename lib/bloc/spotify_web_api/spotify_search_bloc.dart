@@ -1,11 +1,11 @@
-import 'package:bloc_practice/bloc/spotify_web_api/spotify_repository.dart';
 import 'package:bloc_practice/bloc/spotify_web_api/spotify_search_event.dart';
 import 'package:bloc_practice/bloc/spotify_web_api/spotify_search_state.dart';
+import 'package:bloc_practice/bloc/spotify_web_api/spotify_web_api.dart';
 import 'package:bloc_practice/spotify/spotify_track.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SpotifySearchBloc extends Bloc<SpotifySearchEvent, SpotifySearchState> {
-  final SpotifyRepository repository;
+  final SpotifyWebApi repository;
 
   SpotifySearchBloc({
     required this.repository,
